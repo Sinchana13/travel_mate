@@ -1,17 +1,25 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles'
 
-const PlaceDetails=({place})=> {
+const PlaceDetails=({place,selected,refProp})=> {
   const classes = useStyles();
+  // if(selected) refProp?.current?.scrollIntoView({behavior:"smooth",block:'start'})
+
+  useEffect(() => {
+    if (selected && refProp) {
+      refProp.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [selected, refProp]);
+
   return (
     <Card elevation={6}>
       <CardMedia
         style={{ height: 350 }}
-        image={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
+        image={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1674823998.jpg?fit=around|562.5:360&crop=562.5:360;*,*'}
         title={place.name}
       />
       <Typography gutterBottom variant="h5">{place.name}</Typography>
