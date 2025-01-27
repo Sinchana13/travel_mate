@@ -49,14 +49,14 @@ const URL="https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary"
 // }
 
 
-export const getPlacesData = async (lat, lng, radius = 0.1) => {
+export const getPlacesData = async (type,lat, lng, radius = 0.1) => {
   try {
     const bl_latitude = lat - radius / 2;
     const tr_latitude = lat + radius / 2;
     const bl_longitude = lng - radius / 2;
     const tr_longitude = lng + radius / 2;
 
-    const { data: { data } } = await axios.get(URL, {
+    const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`, {
       params: {
         bl_latitude: bl_latitude,
         tr_latitude: tr_latitude,
@@ -74,3 +74,21 @@ export const getPlacesData = async (lat, lng, radius = 0.1) => {
     console.log(error);
   }
 };
+
+export const getWeatherData = async (lat, lng) => {
+  try {
+    if (lat && lng) {
+      const { data } = await axios.get('https://open-weather-map27.p.rapidapi.com/weather', {
+        params: { lon:lng,lat:lat},
+        headers: {
+          'x-rapidapi-key': '00eef6d8f0msh55416aefb718b53p16ee66jsne4cd9436e22a',
+          'x-rapidapi-host':  'open-weather-map27.p.rapidapi.com'
+        },
+      });
+
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}; 

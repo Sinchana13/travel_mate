@@ -4,7 +4,7 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
 
-const List = ({places,childClicked,isLoading}) => {
+const List = ({places,childClicked,isLoading,type,setType,rating,setRating}) => {
 //   const [elRefs, setElRefs] = useState([]);
   // const places=[
   //     {name:'Kundapur'},
@@ -16,8 +16,8 @@ const List = ({places,childClicked,isLoading}) => {
     
   // ]
   const classes = useStyles();
-  const [type, setType]=useState('restaurants');
-  const[rating,setRating]=useState('')
+  // const [type, setType]=useState('restaurants');
+  // const[rating,setRating]=useState('')
   const[elRefs,setElRefs]=useState([])
 
   useEffect(() => {
